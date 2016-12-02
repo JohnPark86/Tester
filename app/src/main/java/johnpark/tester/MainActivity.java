@@ -1,5 +1,6 @@
 package johnpark.tester;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -20,7 +21,6 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         b = (Button) findViewById(R.id.button);
-
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -31,7 +31,6 @@ public class MainActivity extends ActionBarActivity {
         });
 
         b2 = (Button) findViewById(R.id.button2);
-
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,7 +41,14 @@ public class MainActivity extends ActionBarActivity {
         });
 
         b3 = (Button) findViewById(R.id.button3);
+        b3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                loadNextActivity(v);
+
+            }
+        });
         tv = (TextView) findViewById(R.id.textView);
     }
 
@@ -71,5 +77,11 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void loadNextActivity(View v){
+
+        Intent i = new Intent(this, SecondActivity.class);
+        startActivity(i);
     }
 }
