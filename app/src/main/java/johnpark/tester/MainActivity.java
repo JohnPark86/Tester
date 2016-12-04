@@ -14,19 +14,21 @@ public class MainActivity extends ActionBarActivity {
 
     Button b,b2,b3;
     TextView tv;
+    static final int REQUEST_RESULT_CODE = 111;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        instantiateElements();
+    }
 
+    private void instantiateElements() {
         b = (Button) findViewById(R.id.button);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 tv.setText("Goodbye World");
-
             }
         });
 
@@ -34,9 +36,7 @@ public class MainActivity extends ActionBarActivity {
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 tv.setText("Hello World");
-
             }
         });
 
@@ -44,9 +44,7 @@ public class MainActivity extends ActionBarActivity {
         b3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 loadNextActivity(v);
-
             }
         });
         tv = (TextView) findViewById(R.id.textView);
@@ -66,22 +64,26 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
     public void loadNextActivity(View v){
-
         Intent i = new Intent(this, SecondActivity.class);
-        startActivity(i);
+        startActivityForResult(i, REQUEST_RESULT_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_RESULT_CODE) {
+            if (resultCode == RESULT_OK) {
+                String newVal = data.getStringExtra("input");
+                tv.setText(newVal);
+            }
+        }
     }
 }
