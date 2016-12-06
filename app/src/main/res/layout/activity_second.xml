@@ -28,7 +28,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Submit"
+        android:text="Save"
         android:id="@+id/button4"
         android:layout_alignParentBottom="true"
         android:layout_alignLeft="@+id/textView2"
@@ -57,9 +57,9 @@
         android:layout_height="wrap_content"
         android:text="New CheckBox"
         android:id="@+id/checkBox"
-        android:layout_above="@+id/spinner"
-        android:layout_alignRight="@+id/editText3"
-        android:layout_alignEnd="@+id/editText3" />
+        android:layout_centerVertical="true"
+        android:layout_alignRight="@+id/radioButton"
+        android:layout_alignEnd="@+id/radioButton" />
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -75,7 +75,7 @@
         android:layout_height="wrap_content"
         android:text="New ToggleButton"
         android:id="@+id/toggleButton"
-        android:layout_alignTop="@+id/editText"
+        android:layout_alignBottom="@+id/editText"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -84,10 +84,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/spinner"
         android:spinnerMode="dialog"
-        android:layout_above="@+id/radioButton"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="60dp" />
+        android:layout_above="@+id/ratingBar"
+        android:layout_alignRight="@+id/checkBox"
+        android:layout_alignEnd="@+id/checkBox"
+        android:layout_marginBottom="63dp" />
 
     <RatingBar
         android:layout_width="wrap_content"
@@ -95,23 +95,28 @@
         android:id="@+id/ratingBar"
         android:layout_above="@+id/button4"
         android:layout_centerHorizontal="true" />
-
-    <RadioButton
+    <RadioGroup
+        android:id="@+id/radioGroup"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New RadioButton"
-        android:id="@+id/radioButton"
-        android:layout_above="@+id/ratingBar"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_height="wrap_content">
 
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New RadioButton"
-        android:id="@+id/radioButton2"
-        android:layout_alignTop="@+id/radioButton"
-        android:layout_toRightOf="@+id/textView2"
-        android:layout_toEndOf="@+id/textView2" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New RadioButton"
+            android:id="@+id/radioButton2"
+            android:layout_below="@+id/editText3"
+            android:layout_toRightOf="@+id/radioGroup"
+            android:layout_toEndOf="@+id/radioGroup" />
 
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New RadioButton"
+            android:id="@+id/radioButton"
+            android:layout_alignTop="@+id/radioButton2"
+            android:layout_toRightOf="@+id/textView2"
+            android:layout_toEndOf="@+id/textView2" />
+
+    </RadioGroup>
 </RelativeLayout>
