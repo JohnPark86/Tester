@@ -1,9 +1,10 @@
 package johnpark.tester;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,7 +14,6 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RatingBar;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -23,33 +23,35 @@ public class SecondActivity extends ActionBarActivity {
     TextView t;
     Button b;
     ToggleButton tb;
-    Spinner s;
     RatingBar rBar;
     CheckBox cb, cb2;
     RadioButton rb, rb2;
     EditText et,et2,et3;
     RadioGroup rg;
+    SharedPreferences sPref;
+    public static final String MyPREFERENCES = "config" ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
         instantiateElements();
+
+        cb.setChecked(sPref.getBoolean("checkbox1",false));
+        cb2.setChecked(sPref.getBoolean("checkbox2",false));
     }
 
     private void instantiateElements() {
 
+        sPref = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         t = (TextView) findViewById(R.id.textView2);
-
         rg = (RadioGroup) findViewById(R.id.radioGroup);
-
         et = (EditText) findViewById(R.id.editText);
         et2 = (EditText) findViewById(R.id.editText2);
         et3 = (EditText) findViewById(R.id.editText3);
         cb = (CheckBox) findViewById(R.id.checkBox);
         cb2 = (CheckBox) findViewById(R.id.checkBox2);
         tb = (ToggleButton) findViewById(R.id.toggleButton);
-        s = (Spinner) findViewById(R.id.spinner);
         rBar = (RatingBar) findViewById(R.id.ratingBar);
         rb = (RadioButton) findViewById(R.id.radioButton);
         rb2 = (RadioButton) findViewById(R.id.radioButton2);
@@ -60,7 +62,6 @@ public class SecondActivity extends ActionBarActivity {
             public void onClick(View v) {
                 getInput();
             }
-
         });
 
     }
@@ -69,10 +70,19 @@ public class SecondActivity extends ActionBarActivity {
         String input = et.getText().toString();
         String input2 = et2.getText().toString();
         String input3 = et3.getText().toString();
-
         int selectedRadioButtonId = rg.getCheckedRadioButtonId();
+        boolean cbStatus = cb.isChecked();
+        boolean cb2Status = cb2.isChecked();
+        float rating = rBar.getRating();
+        boolean tbStatus = tb.isChecked();
 
-        Log.i(getClass().getName(), String.valueOf(selectedRadioButtonId));
+        SharedPreferences.Editor editor = sPref.edit();
+
+        editor.putString("toggle", String.valueOf(tbStatus));
+        editor.putString("radio button", String.valueOf(selectedRadioButtonId));
+        editor.putBoolean("checkbox1", cbStatus);
+        editor.putBoolean("checkbox2: ", cb2Status);
+        editor.putString("rating: ", String.valueOf(rating));
 
         Intent in = new Intent(this,MainActivity.class);
         in.putExtra("input", input);
