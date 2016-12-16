@@ -37,13 +37,12 @@ public class SecondActivity extends ActionBarActivity {
         setContentView(R.layout.activity_second);
         instantiateElements();
 
-        cb.setChecked(sPref.getBoolean("checkbox1",false));
-        cb2.setChecked(sPref.getBoolean("checkbox2",false));
     }
 
     private void instantiateElements() {
 
         sPref = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
         t = (TextView) findViewById(R.id.textView2);
         rg = (RadioGroup) findViewById(R.id.radioGroup);
         et = (EditText) findViewById(R.id.editText);
@@ -55,6 +54,16 @@ public class SecondActivity extends ActionBarActivity {
         rBar = (RatingBar) findViewById(R.id.ratingBar);
         rb = (RadioButton) findViewById(R.id.radioButton);
         rb2 = (RadioButton) findViewById(R.id.radioButton2);
+
+        tb.setChecked(sPref.getBoolean("toggle", false));
+        cb.setChecked(sPref.getBoolean("checkbox1", false));
+        cb2.setChecked(sPref.getBoolean("checkbox2", false));
+        rBar.setRating(sPref.getFloat("rating", 0));
+
+        int i = sPref.getInt("radio button",-1);
+        if( i >= 0){
+            rg.check(i);
+        }
 
         b = (Button) findViewById(R.id.button4);
         b.setOnClickListener(new View.OnClickListener() {
@@ -70,6 +79,7 @@ public class SecondActivity extends ActionBarActivity {
         String input = et.getText().toString();
         String input2 = et2.getText().toString();
         String input3 = et3.getText().toString();
+
         int selectedRadioButtonId = rg.getCheckedRadioButtonId();
         boolean cbStatus = cb.isChecked();
         boolean cb2Status = cb2.isChecked();
@@ -78,11 +88,12 @@ public class SecondActivity extends ActionBarActivity {
 
         SharedPreferences.Editor editor = sPref.edit();
 
-        editor.putString("toggle", String.valueOf(tbStatus));
-        editor.putString("radio button", String.valueOf(selectedRadioButtonId));
+        editor.putBoolean("toggle", tbStatus);
         editor.putBoolean("checkbox1", cbStatus);
-        editor.putBoolean("checkbox2: ", cb2Status);
-        editor.putString("rating: ", String.valueOf(rating));
+        editor.putBoolean("checkbox2", cb2Status);
+        editor.putFloat("rating", rating);
+        editor.putInt("radio button", selectedRadioButtonId);
+        editor.commit();
 
         Intent in = new Intent(this,MainActivity.class);
         in.putExtra("input", input);
