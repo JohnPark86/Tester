@@ -99,7 +99,7 @@
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New RadioButton"
+            android:text="@string/blue"
             android:id="@+id/radioButton2"
             android:layout_marginBottom="37dp"
             android:layout_above="@+id/checkBox2"
@@ -109,7 +109,7 @@
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New RadioButton"
+            android:text="@string/red"
             android:id="@+id/radioButton"
             android:layout_alignTop="@+id/radioButton2"
             android:layout_alignRight="@+id/checkBox"
@@ -117,4 +117,13 @@
             android:layout_marginLeft="40dp" />
 
     </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bgcolor"
+        android:id="@+id/textView3"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/editText"
+        android:layout_toStartOf="@+id/editText" />
 </RelativeLayout>

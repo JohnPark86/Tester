@@ -20,7 +20,7 @@ import android.widget.ToggleButton;
 
 public class SecondActivity extends ActionBarActivity {
 
-    TextView t;
+    TextView t,t2;
     Button b;
     ToggleButton tb;
     RatingBar rBar;
@@ -44,6 +44,7 @@ public class SecondActivity extends ActionBarActivity {
         sPref = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
         t = (TextView) findViewById(R.id.textView2);
+        t2 = (TextView) findViewById(R.id.textView3);
         rg = (RadioGroup) findViewById(R.id.radioGroup);
         et = (EditText) findViewById(R.id.editText);
         et2 = (EditText) findViewById(R.id.editText2);
