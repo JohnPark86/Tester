@@ -1,8 +1,12 @@
 package johnpark.tester;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,12 +18,27 @@ public class MainActivity extends ActionBarActivity {
 
     Button b,b2,b3;
     TextView tv;
+    SharedPreferences sPref;
+    public static final String MyPREFERENCES = "config" ;
     static final int REQUEST_RESULT_CODE = 111;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        sPref = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        int i = sPref.getInt("radio button",-1);
+        Log.i("rGroup onCrt",String.valueOf(i));
+        // red: 2131492943
+        //blue: 2131492942
+
+        if(i==2131492942){
+            getWindow().getDecorView().setBackgroundColor(Color.parseColor("#1BA3DC"));
+        }
+        if(i==2131492943){
+            getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FF8B8B"));
+        }
+
         instantiateElements();
     }
 
@@ -48,11 +67,27 @@ public class MainActivity extends ActionBarActivity {
             }
         });
         tv = (TextView) findViewById(R.id.textView);
+
+
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        int i = sPref.getInt("radio button",-1);
+        Log.i("rGroup", String.valueOf(i));
+        if(i==2131492942){
+            getWindow().getDecorView().setBackgroundColor(Color.parseColor("#1BA3DC"));
+        }
+        if(i==2131492943){
+            getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FF8B8B"));
+        }
+
     }
 
     @Override

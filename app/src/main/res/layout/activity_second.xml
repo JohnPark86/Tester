@@ -125,5 +125,6 @@
         android:id="@+id/textView3"
         android:layout_centerVertical="true"
         android:layout_toLeftOf="@+id/editText"
-        android:layout_toStartOf="@+id/editText" />
+        android:layout_toStartOf="@+id/editText"
+        android:layout_above="@+id/radioGroup" />
 </RelativeLayout>
