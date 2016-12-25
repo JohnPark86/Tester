@@ -3,6 +3,7 @@ package johnpark.tester;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -35,13 +36,25 @@ public class SecondActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
+        sPref = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        int i = sPref.getInt("radio button",-1);
+        setBackground(i);
         instantiateElements();
 
     }
 
-    private void instantiateElements() {
+    private void setBackground(int i) {
+        if(i==2131492942){
+            //blue: 2131492942
+            getWindow().getDecorView().setBackgroundColor(Color.parseColor("#1BA3DC"));
+        }
+        if(i==2131492943){
+            // red: 2131492943
+            getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FF8B8B"));
+        }
+    }
 
-        sPref = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+    private void instantiateElements() {
 
         t = (TextView) findViewById(R.id.textView2);
         t2 = (TextView) findViewById(R.id.textView3);
@@ -80,7 +93,6 @@ public class SecondActivity extends ActionBarActivity {
         String input = et.getText().toString();
         String input2 = et2.getText().toString();
         String input3 = et3.getText().toString();
-
         int selectedRadioButtonId = rg.getCheckedRadioButtonId();
         boolean cbStatus = cb.isChecked();
         boolean cb2Status = cb2.isChecked();
@@ -97,9 +109,7 @@ public class SecondActivity extends ActionBarActivity {
         editor.commit();
 
         Intent in = new Intent(this,MainActivity.class);
-        in.putExtra("input", input);
-        setResult(RESULT_OK, in);
-        finish();
+        startActivity(in);
     }
 
     @Override
