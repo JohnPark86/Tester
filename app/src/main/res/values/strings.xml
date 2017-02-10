@@ -6,9 +6,11 @@
     <string name="title_activity_second">SecondActivity</string>
     <string name ="new_button">New Button</string>
     <string name ="old_button">Old Button</string>
-    <string name ="right_arrow">---></string>
+    <string name ="right_arrow">---}</string>
+    <string name ="left_arrow">{---</string>
     <string name ="bgcolor">Background Color</string>
     <string name ="blue">Blue</string>
     <string name ="red">Red</string>
+    <string name="title_activity_list">ListActivity</string>
 
 </resources>

@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 public class MainActivity extends ActionBarActivity {
 
-    Button b,b2,b3;
+    Button b,b2,b3,b4;
     TextView tv;
     SharedPreferences sPref;
     public static final String MyPREFERENCES = "config" ;
@@ -67,6 +67,14 @@ public class MainActivity extends ActionBarActivity {
                 loadNextActivity(v);
             }
         });
+
+        b4 = (Button) findViewById(R.id.button4);
+        b4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadListActivity(v);
+            }
+        });
         tv = (TextView) findViewById(R.id.textView);
 
     }
@@ -98,13 +106,9 @@ public class MainActivity extends ActionBarActivity {
         startActivity(i);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_RESULT_CODE) {
-            if (resultCode == RESULT_OK) {
-                String newVal = data.getStringExtra("input");
-                tv.setText(newVal);
-            }
-        }
+    public void loadListActivity(View v){
+        Intent i = new Intent(this, ListActivity.class);
+        startActivity(i);
     }
+
 }
